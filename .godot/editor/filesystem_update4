@@ -1,0 +1,7 @@
+res://Enemy/scenes/dronefly/Dronefly.tscn
+res://Player/particles/poof1.tres
+res://Player/shaders/Sky.gdshader
+res://Player/Sky.tscn
+res://Scenes/Forest.tscn
+res://UI/scenes/ui.tscn
+res://Debug/Debug_scene.tscn

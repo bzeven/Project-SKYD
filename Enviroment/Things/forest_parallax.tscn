@@ -1,0 +1,145 @@
+[gd_scene load_steps=9 format=3 uid="uid://cb88n36i8lwys"]
+
+[ext_resource type="Texture2D" uid="uid://vqt5g8irefjr" path="res://Enviroment/sprites/skybox_night.png" id="1_b4p88"]
+[ext_resource type="Texture2D" uid="uid://dyp5q8n38ur5d" path="res://Enviroment/sprites/Shadow_Tree.png" id="2_ogcih"]
+[ext_resource type="Texture2D" uid="uid://rd32lbxpbwv0" path="res://Enviroment/sprites/tree_shadow.png" id="3_hr6po"]
+[ext_resource type="Texture2D" uid="uid://cacwwfjsqu0bt" path="res://Enviroment/sprites/bush_forest.png" id="3_kkx3k"]
+[ext_resource type="Texture2D" uid="uid://dgkw1f30tw450" path="res://Enviroment/sprites/bush_green.png" id="4_lpnbc"]
+[ext_resource type="Texture2D" uid="uid://d3koqrscjmat5" path="res://Enviroment/sprites/bush_lime.png" id="5_gwvbx"]
+[ext_resource type="Texture2D" uid="uid://2yg4th1e3pxv" path="res://Enviroment/sprites/tree.png" id="6_dgvxe"]
+[ext_resource type="Texture2D" uid="uid://dm56heaesxk55" path="res://Enviroment/sprites/lime_filler.png" id="7_118s5"]
+
+[node name="ForestParallax" type="CanvasLayer"]
+follow_viewport_enabled = true
+follow_viewport_scale = 0.8
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+layer = -5
+
+[node name="Sky" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0, 0)
+motion_mirroring = Vector2(400, 272)
+
+[node name="Skybox" type="Sprite2D" parent="ParallaxBackground/Sky"]
+texture = ExtResource("1_b4p88")
+centered = false
+
+[node name="BgFarthest" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 80)
+motion_scale = Vector2(0.54, 0.54)
+motion_mirroring = Vector2(400, 0)
+
+[node name="ShadowTree" type="Sprite2D" parent="ParallaxBackground/BgFarthest"]
+texture = ExtResource("2_ogcih")
+offset = Vector2(100, 0)
+
+[node name="ShadowTree2" type="Sprite2D" parent="ParallaxBackground/BgFarthest"]
+texture = ExtResource("2_ogcih")
+offset = Vector2(500, 0)
+
+[node name="Bgfarther" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2(0.58, 0.58)
+
+[node name="ShadowTree3" type="Sprite2D" parent="ParallaxBackground/Bgfarther"]
+position = Vector2(0, 80)
+texture = ExtResource("2_ogcih")
+offset = Vector2(180, 0)
+
+[node name="ShadowTree4" type="Sprite2D" parent="ParallaxBackground/Bgfarther"]
+position = Vector2(0, 80)
+texture = ExtResource("2_ogcih")
+offset = Vector2(580, 0)
+
+[node name="FarTree3" type="Sprite2D" parent="ParallaxBackground/Bgfarther"]
+position = Vector2(0, 80)
+texture = ExtResource("3_hr6po")
+offset = Vector2(300, 0)
+
+[node name="FarTree4" type="Sprite2D" parent="ParallaxBackground/Bgfarther"]
+position = Vector2(0, 80)
+texture = ExtResource("3_hr6po")
+offset = Vector2(700, 0)
+
+[node name="BgFar" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 80)
+motion_scale = Vector2(0.62, 0.62)
+motion_mirroring = Vector2(400, 0)
+
+[node name="FarTree1" type="Sprite2D" parent="ParallaxBackground/BgFar"]
+texture = ExtResource("3_hr6po")
+offset = Vector2(250, 0)
+
+[node name="FarTree2" type="Sprite2D" parent="ParallaxBackground/BgFar"]
+texture = ExtResource("3_hr6po")
+offset = Vector2(650, 0)
+
+[node name="BushForest" type="Sprite2D" parent="ParallaxBackground/BgFar"]
+texture = ExtResource("3_kkx3k")
+offset = Vector2(0, -15)
+
+[node name="BushForest2" type="Sprite2D" parent="ParallaxBackground/BgFar"]
+texture = ExtResource("3_kkx3k")
+offset = Vector2(400, -15)
+
+[node name="BgMiddle" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 80)
+motion_scale = Vector2(0.68, 0.68)
+motion_mirroring = Vector2(400, 0)
+
+[node name="Tree" type="Sprite2D" parent="ParallaxBackground/BgMiddle"]
+texture = ExtResource("6_dgvxe")
+offset = Vector2(-90, 0)
+
+[node name="Tree2" type="Sprite2D" parent="ParallaxBackground/BgMiddle"]
+texture = ExtResource("6_dgvxe")
+offset = Vector2(310, 0)
+
+[node name="BushGreen" type="Sprite2D" parent="ParallaxBackground/BgMiddle"]
+position = Vector2(0, -10)
+texture = ExtResource("4_lpnbc")
+
+[node name="BushGreen2" type="Sprite2D" parent="ParallaxBackground/BgMiddle"]
+position = Vector2(0, -10)
+texture = ExtResource("4_lpnbc")
+offset = Vector2(400, 0)
+
+[node name="BgMiddler" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 80)
+motion_scale = Vector2(0.74, 0.74)
+motion_mirroring = Vector2(400, 0)
+
+[node name="Tree" type="Sprite2D" parent="ParallaxBackground/BgMiddler"]
+texture = ExtResource("6_dgvxe")
+offset = Vector2(-90, 0)
+
+[node name="Tree2" type="Sprite2D" parent="ParallaxBackground/BgMiddler"]
+texture = ExtResource("6_dgvxe")
+offset = Vector2(310, 0)
+
+[node name="BgClose" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 80)
+motion_scale = Vector2(0.8, 1)
+motion_mirroring = Vector2(400, 0)
+
+[node name="Tree" type="Sprite2D" parent="ParallaxBackground/BgClose"]
+texture = ExtResource("6_dgvxe")
+offset = Vector2(25, 0)
+
+[node name="Tree2" type="Sprite2D" parent="ParallaxBackground/BgClose"]
+texture = ExtResource("6_dgvxe")
+offset = Vector2(425, 0)
+
+[node name="BushLime" type="Sprite2D" parent="ParallaxBackground/BgClose"]
+texture = ExtResource("5_gwvbx")
+
+[node name="BushLime2" type="Sprite2D" parent="ParallaxBackground/BgClose"]
+texture = ExtResource("5_gwvbx")
+offset = Vector2(400, 0)
+
+[node name="LimeFiller" type="Sprite2D" parent="ParallaxBackground/BgClose"]
+texture = ExtResource("7_118s5")
+offset = Vector2(0, 272)
+
+[node name="LimeFiller2" type="Sprite2D" parent="ParallaxBackground/BgClose"]
+texture = ExtResource("7_118s5")
+offset = Vector2(400, 272)

@@ -1,0 +1,140 @@
+[gd_scene load_steps=12 format=3 uid="uid://2fcby508n3kl"]
+
+[ext_resource type="Script" path="res://Enemy/scenes/dronefly/Dronefly.gd" id="1_xqyri"]
+[ext_resource type="Texture2D" uid="uid://dfyal1prtxpli" path="res://Enemy/sprites/dronefly.png" id="2_rla08"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1dk4s"]
+radius = 29.1548
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nk8bg"]
+size = Vector2(36, 22)
+
+[sub_resource type="Animation" id="Animation_y1ooj"]
+resource_name = "back"
+
+[sub_resource type="Animation" id="Animation_grs6h"]
+resource_name = "chase"
+
+[sub_resource type="Animation" id="Animation_jil8r"]
+resource_name = "hover"
+
+[sub_resource type="Animation" id="Animation_e75qp"]
+resource_name = "rest"
+
+[sub_resource type="Animation" id="Animation_16vfl"]
+resource_name = "zip"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a3ayq"]
+_data = {
+"back": SubResource("Animation_y1ooj"),
+"chase": SubResource("Animation_grs6h"),
+"hover": SubResource("Animation_jil8r"),
+"rest": SubResource("Animation_e75qp"),
+"zip": SubResource("Animation_16vfl")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xtbk8"]
+size = Vector2(1600, 150)
+
+[node name="Dronefly" type="CharacterBody2D"]
+collision_layer = 4
+script = ExtResource("1_xqyri")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_rla08")
+hframes = 3
+
+[node name="Marker2D" type="Marker2D" parent="Sprite2D"]
+position = Vector2(49, 23)
+
+[node name="PlayerCheck" type="Area2D" parent="Sprite2D/Marker2D"]
+collision_layer = 32
+collision_mask = 16
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sprite2D/Marker2D/PlayerCheck"]
+shape = SubResource("CircleShape2D_1dk4s")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_nk8bg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_a3ayq")
+}
+
+[node name="GroundCheck" type="RayCast2D" parent="."]
+target_position = Vector2(0, 14)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="StateTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="ChaseTimer" type="Timer" parent="."]
+
+[node name="Status" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -33.0
+offset_top = -41.0
+offset_right = -33.0
+offset_bottom = -41.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Status"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Text"
+
+[node name="ActiveDetection" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 2
+monitorable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ActiveDetection"]
+shape = SubResource("RectangleShape2D_xtbk8")
+
+[node name="Feeler1" type="RayCast2D" parent="."]
+target_position = Vector2(-80, -40)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="1" type="Marker2D" parent="Feeler1"]
+position = Vector2(-79.7543, -39.8761)
+
+[node name="Feeler2" type="RayCast2D" parent="."]
+target_position = Vector2(-80, 40)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="2" type="Marker2D" parent="Feeler2"]
+position = Vector2(-80.073, 40.1002)
+
+[node name="Feeler3" type="RayCast2D" parent="."]
+target_position = Vector2(80, -40)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="3" type="Marker2D" parent="Feeler3"]
+position = Vector2(80.0112, -39.9094)
+
+[node name="Feeler4" type="RayCast2D" parent="."]
+target_position = Vector2(80, 40)
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="4" type="Marker2D" parent="Feeler4"]
+position = Vector2(80.017, 40.0517)
+
+[connection signal="area_entered" from="Sprite2D/Marker2D/PlayerCheck" to="." method="_on_player_check_area_entered"]
+[connection signal="body_entered" from="Sprite2D/Marker2D/PlayerCheck" to="." method="_on_player_check_body_entered"]
+[connection signal="timeout" from="StateTimer" to="." method="_on_state_timer_timeout"]
+[connection signal="timeout" from="ChaseTimer" to="." method="_on_chase_timer_timeout"]
+[connection signal="area_entered" from="ActiveDetection" to="." method="_on_active_detection_area_entered"]
+[connection signal="area_exited" from="ActiveDetection" to="." method="_on_active_detection_area_exited"]

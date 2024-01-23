@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://durylrffs7elk"]
+
+[ext_resource type="Material" uid="uid://du1imd6rhe6ty" path="res://Player/particles/poof1.tres" id="1_8n87h"]
+[ext_resource type="Texture2D" uid="uid://bcvsq20dqpwok" path="res://Player/particles/circle.png" id="1_mfpv3"]
+[ext_resource type="Script" path="res://Player/particles/poof.gd" id="2_ajrht"]
+
+[node name="poof" type="GPUParticles2D"]
+process_material = ExtResource("1_8n87h")
+texture = ExtResource("1_mfpv3")
+one_shot = true
+speed_scale = 2.86
+explosiveness = 0.6
+randomness = 0.8
+script = ExtResource("2_ajrht")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

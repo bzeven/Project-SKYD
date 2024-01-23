@@ -1,0 +1,49 @@
+[gd_scene load_steps=6 format=3 uid="uid://6q63p58wji8"]
+
+[ext_resource type="Script" path="res://Enemy/scenes/boss_001.gd" id="1_f45pe"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_amsts"]
+
+[sub_resource type="Gradient" id="Gradient_deahe"]
+offsets = PackedFloat32Array(0, 0.534591, 0.993711)
+colors = PackedColorArray(0.506554, 0.0111052, 0.402073, 1, 1, 0.10469, 0.755711, 1, 0.730216, 0.730216, 0.730216, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_wyexo"]
+gradient = SubResource("Gradient_deahe")
+width = 32
+height = 32
+fill_from = Vector2(0.5, 0)
+fill_to = Vector2(0.5, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r21nx"]
+radius = 80.0
+
+[node name="Boss001" type="CharacterBody2D"]
+collision_layer = 4
+floor_stop_on_slope = false
+script = ExtResource("1_f45pe")
+current_state = "Idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_amsts")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("GradientTexture2D_wyexo")
+
+[node name="Detection" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Detection"]
+shape = SubResource("CircleShape2D_r21nx")
+
+[node name="IdleTimer" type="Timer" parent="."]
+
+[node name="PursueTimer" type="Timer" parent="."]
+
+[node name="ShootCD" type="Timer" parent="."]
+
+[node name="RamCD" type="Timer" parent="."]
+
+[node name="MoveTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Detection" to="." method="_on_detection_body_entered"]
+[connection signal="timeout" from="MoveTimer" to="." method="_on_move_timer_timeout"]
